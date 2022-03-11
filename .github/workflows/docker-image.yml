@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: set55/node-ssh-cmd@v1.2
+        uses: set55/node-ssh-cmd@v1.3
         with:
           who-to-greet: 'Mona the Octocat'
       # Use the output from the `hello` step

@@ -3,13 +3,14 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to ssh to aws
     steps:
       - name: Hello world action step
         id: hello
-        uses: set55/node-ssh-cmd@v1.3
+        uses: set55/node-ssh-cmd@v1.4
         with:
-          who-to-greet: 'Mona the Octocat'
+          who-to-greet: 'Set Su'
+          private-key: ${{ secrets.SuperSecret }}
       # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+#      - name: Get the output time
+#        run: echo "The time was ${{ steps.hello.outputs.time }}"

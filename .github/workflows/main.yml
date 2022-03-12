@@ -10,18 +10,38 @@ jobs:
     name: ssh build image
     steps:
       - name: pull repo
-        uses: set55/node-ssh-cmd@v1.7.6
+        uses: set55/node-ssh-cmd@v1.7.7
         with:
           private-key: ${{ secrets.SuperSecret }}
           server-ip: ${{secrets.ServerIp}}
           work-target: 'updateGit'
+          repo-name: 'express-server'
+          git-repo: 'set55/express-server.git'
       - name: build image
         id: build
-        uses: set55/node-ssh-cmd@v1.7.6
+        uses: set55/node-ssh-cmd@v1.7.7
         with:
           private-key: ${{ secrets.SuperSecret }}
           server-ip: ${{secrets.ServerIp}}
           work-target: 'build'
+          image-name: 'express-img'
+          repo-name: 'express-server'
       # Use the output from the `hello` step
       - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+        run: echo "The time was ${{ steps.build.outputs.time }}"
+  deploy:
+    runs-on: ubuntu-latest
+    name: ssh deploy
+    steps:
+      - name: deploy docker container
+        id: deploy
+        uses: set55/node-ssh-cmd@v1.7.7
+        with:
+          private-key: ${{ secrets.SuperSecret }}
+          server-ip: ${{secrets.ServerIp}}
+          work-target: 'run'
+          container-name: 'express'
+          container-port: '3000'
+          image-name: 'express-img'
+      - name: Get the output time
+        run: echo "The time was ${{ steps.deploy.outputs.time }}"

@@ -1,10 +1,20 @@
-on: [push]
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - v*.*.*
 
 jobs:
   build:
     runs-on: ubuntu-latest
     name: ssh build image
     steps:
+      - name: pull repo
+        uses: set55/node-ssh-cmd@v1.7.1
+        with:
+          private-key: ${{ secrets.SuperSecret }}
+          server-ip: ${{secrets.ServerIp}}
+          work-target: 'updateGit'
       - name: build image
         id: build
         uses: set55/node-ssh-cmd@v1.7.0

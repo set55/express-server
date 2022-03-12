@@ -10,14 +10,14 @@ jobs:
     name: ssh build image
     steps:
       - name: pull repo
-        uses: set55/node-ssh-cmd@v1.7.2
+        uses: set55/node-ssh-cmd@v1.7.3
         with:
           private-key: ${{ secrets.SuperSecret }}
           server-ip: ${{secrets.ServerIp}}
           work-target: 'updateGit'
       - name: build image
         id: build
-        uses: set55/node-ssh-cmd@v1.7.2
+        uses: set55/node-ssh-cmd@v1.7.3
         with:
           private-key: ${{ secrets.SuperSecret }}
           server-ip: ${{secrets.ServerIp}}

@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: build image
         id: build
-        uses: set55/node-ssh-cmd@v1.5
+        uses: set55/node-ssh-cmd@v1.6
         with:
           who-to-greet: 'Set Su'
           private-key: ${{ secrets.SuperSecret }}

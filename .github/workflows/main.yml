@@ -26,13 +26,6 @@ jobs:
           work-target: 'build'
           image-name: 'express-img'
           repo-name: 'express-server'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.build.outputs.time }}"
-  deploy:
-    runs-on: ubuntu-latest
-    name: ssh deploy
-    steps:
       - name: deploy docker container
         id: deploy
         uses: set55/node-ssh-cmd@v1.7.7
@@ -43,5 +36,6 @@ jobs:
           container-name: 'express'
           container-port: '3000'
           image-name: 'express-img'
+      # Use the output from the `hello` step
       - name: Get the output time
-        run: echo "The time was ${{ steps.deploy.outputs.time }}"
+        run: echo "The time was ${{ steps.build.outputs.time }}"

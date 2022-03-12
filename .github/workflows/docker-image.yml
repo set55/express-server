@@ -7,10 +7,10 @@ jobs:
     steps:
       - name: build image
         id: build
-        uses: set55/node-ssh-cmd@v1.6
+        uses: set55/node-ssh-cmd@v1.6.1
         with:
-          who-to-greet: 'Set Su'
           private-key: ${{ secrets.SuperSecret }}
+          server-ip: ${{secrets.ServerIp}}
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"

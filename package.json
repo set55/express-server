@@ -9,7 +9,6 @@
     "dev": "nodemon index.js",
     "build": "tsc --project ./"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/set55/express-server.git"
@@ -24,8 +23,11 @@
   },
   "homepage": "https://github.com/set55/express-server#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "express": "^4.17.3",
-    "helmet": "^5.0.2"
+    "helmet": "^5.0.2",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

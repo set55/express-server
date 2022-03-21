@@ -16,17 +16,12 @@ RUN touch /run/openrc/softlevel
 ARG NODE_ENV=prod
 
 WORKDIR /var/www
-RUN mkdir -p /var/www/supervisor/log/
-RUN touch /var/www/supervisor/log/nginx.log
-RUN touch /var/www/supervisor/log/nginx_err.log
-RUN touch /var/www/supervisor/log/node.log
-RUN touch /var/www/supervisor/log/node_err.log
 
 COPY . .
-COPY ./nginx/nginx.conf /etc/nginx
-COPY ./nginx/conf.d/server.conf /etc/nginx/http.d
-COPY ./supervisor/supervisord.conf /etc
-COPY ./supervisor/supervisor.d /etc/supervisor.d
+COPY docker/nginx/nginx.conf /etc/nginx
+COPY docker/nginx/conf.d/server.conf /etc/nginx/http.d
+COPY docker/supervisor/supervisord.conf /etc
+COPY docker/supervisor/supervisor.d /etc/supervisor.d
 
 RUN if [ ${NODE_ENV} = "prod" ]; then \
 rm /etc/supervisor.d/node-dev.ini; \

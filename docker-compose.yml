@@ -1,6 +1,19 @@
 version: "3.9"
+networks:
+  backend:
+    driver: bridge
 services:
-  node-web:
-    build: .
+  node-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=dev
+    container_name: "node-api-container"
+    volumes:
+      - ./:/var/www:cached
     ports:
-      - "8000:3000"
+      - "80:80"
+    networks:
+      - backend
+    command: "supervisord -c /etc/supervisord.conf"

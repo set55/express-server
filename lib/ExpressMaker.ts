@@ -15,7 +15,6 @@ class ExpressMaker {
         this.app.use(morgan('tiny'))
         this.app.use(cors())
         this.app.use(router)
-        console.log(process.env.TEST, 123)
     }
 }
 

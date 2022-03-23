@@ -1,7 +1,3 @@
-import ExpressMaker from './lib/ExpressMaker';
-import 'dotenv/config'
-const app = (new ExpressMaker()).app
-console.log(process.env.TEST)
+import main from "./main"
 
-app.listen(3000)
-console.log('server listen 3000')
+main().then(r => console.log('main finish'))
